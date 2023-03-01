@@ -31,6 +31,7 @@ body{
     color:#ffffff;
     width:20%;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .word-meaning{
@@ -49,4 +50,5 @@ body{
     background: transparent;
     color:#7360c9;
     border:none;
+    cursor: pointer;
 }
