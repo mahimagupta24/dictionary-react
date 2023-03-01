@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,100&display=swap');
 body{
     background-color: #ae9cff;
+    font-family: "Poppins",sans-serif;
+    font-size: large;
 }
 .container{
     background-color: #ffffff;
@@ -17,19 +19,21 @@ body{
     display: flex;
     justify-content: space-between; 
 }
-.search-box input{
+.input{
     padding : 5px;
-    width:70%;
+    width:50%;
     border:none;
     outline:none;
     border-bottom: 3px solid #ae9cff;
+    font-size: large;
 }
-#search-btn{
-    padding: 15px 0;
+#search-box{
+    padding: 10px 0;
+    margin:50px;
     background-color: #ae9cff;
     border : none;
     color:#ffffff;
-    width:25%;
+    width:20%;
     border-radius: 5px;
 }
 .result{
@@ -44,7 +48,7 @@ body{
    margin-top: 80px; 
 }
 .result button{
-    color:#ae9cff;
+    color:#6449dc;
     border: none;
     outline: none;
     background-color: transparent;
@@ -66,4 +70,11 @@ body{
     border-left: 5px solid #ae9cff;
     padding-left: 30px;
     margin-top: 20px;
+}
+#play-btn{
+    margin-bottom: 13px;
+    margin-top: 14px;
+    background: transparent;
+    color:#7360c9;
+    border:none;
 }

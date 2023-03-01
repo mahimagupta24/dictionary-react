@@ -6,6 +6,7 @@ function App() {
   const [word, setWord] = useState("");
   const [result, setResult] = useState([]);
   const [error, setError] = useState("");
+  const [iconIsVisible,setIconIsVisible] =useState(true)
 
   const wordHandler = (e) => setWord(e.target.value);
 
@@ -15,26 +16,30 @@ function App() {
       .then((data) => {
         console.log(data);
         setResult(data);
-        if (data.title && data.title === "No Definitions Found") {
-          setError("Word not found");
+        if ( data.title === "No Definitions Found") {
+          setError("Couldn't find the word");
         } else {
           setResult(data);
           setError("");
         }
-      })
+        if(data[0]?.phonetics[1]?.audio){
+          setIconIsVisible(true)
+        }else{
+          setIconIsVisible(false)
+        }
+      }
+      )
       .catch((error) => {
         console.log(error);
-        setError("Enter the word");
+        setError(" Enter the word");
       });
   };
 
   const playAudio = () => {
-    const audioSrc = result[0]?.phonetics[1]?.audio;
+    const audioSrc = result[0].phonetics[1].audio;
     if (audioSrc) {
       const audio = new Audio(audioSrc);
       audio.play();
-    } else {
-      console.log("No audio");
     }
   };
 
@@ -52,16 +57,15 @@ function App() {
         <div>
             <h2 className="word">{result[0].word}</h2>
             <div className="output"> 
-           <h3 className="phonetics"> {result[0].phonetics[1]?.text ?? "No phonetics found"}</h3>
-           <button id="play-btn" onClick={playAudio}>
-              <FontAwesomeIcon icon={faVolumeHigh}></FontAwesomeIcon>
-            </button>
+           <h3 className="phonetics"style={{color:'#ae9cff'}}> {result[0].phonetics[1]?.text ?? "No phonetics found"}</h3>
+           {iconIsVisible&&<button id="play-btn" onClick={playAudio} >
+              <FontAwesomeIcon icon={faVolumeHigh} ></FontAwesomeIcon>
+            </button>}
             </div>
             <div className="details">
               {result[0].meanings[0]?.definitions[0]?.definition ??
                 "no definition"}
             </div>
-          {/* </div> */}
         </div>
       ) : (
         <h2>{error}</h2>
